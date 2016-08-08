@@ -1,0 +1,2 @@
+city_name_1;city_code_1
+city_name_2;city_code_2
