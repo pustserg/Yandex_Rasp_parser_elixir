@@ -5,6 +5,9 @@ defmodule RaspParser do
     end
 
     def process do
-        RaspParser.FileOperations.read_cities |> IO.puts
+        RaspParser.FileOperations.read_cities
+          |> Enum.map(&RaspParser.Models.City.url/1)
+          |> Enum.flat_map(&RaspParser.Parsers.parse_city/1)
+          |> IO.inspect
     end
 end

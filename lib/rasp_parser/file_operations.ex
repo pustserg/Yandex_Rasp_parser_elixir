@@ -4,11 +4,11 @@ defmodule RaspParser.FileOperations do
 
   def read_cities do
     {:ok, cities} = File.read(
-        Application.get_env(:rasp_parser, :input_cities_file_name)
+      Application.get_env(:rasp_parser, :input_cities_file_name)
     )
     String.split(cities, "\n")
-        |> Enum.map(fn(str) -> String.split(str, ";") end)
-        |> Enum.map(fn(arr) -> create_city(arr) end)
+      |> Enum.map(&String.split(&1, ";"))
+      |> Enum.map(&create_city/1)
   end
 
   defp create_city(city_arr) do
