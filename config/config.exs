@@ -29,4 +29,5 @@ use Mix.Config
 #
 
 config :rasp_parser, base_rasp_url: "https://rasp.yandex.ru"
+config :rasp_parser, directions_out_filename: "directions_out.txt"
 import_config "#{Mix.env}.exs"

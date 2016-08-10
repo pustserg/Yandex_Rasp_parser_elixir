@@ -5,9 +5,13 @@ defmodule RaspParser do
     end
 
     def process do
-        RaspParser.FileOperations.read_cities
-          |> Enum.map(&RaspParser.Models.City.url/1)
-          |> Enum.flat_map(&RaspParser.Parsers.parse_city/1)
-          |> IO.inspect
+      {:ok, directions} = RaspParser.FileOperations.read_cities
+        |> Enum.map(&RaspParser.Models.City.url/1)
+        |> Enum.flat_map(&RaspParser.Parsers.parse_city/1)
+        |> RaspParser.FileOperations.write_results("directions")
+    end
+
+    defprotocol Stringable do
+      def to_string(resource)
     end
 end
