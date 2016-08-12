@@ -9,6 +9,7 @@ defmodule RaspParser do
         |> Enum.map(&RaspParser.Models.City.url/1)
         |> Enum.flat_map(&RaspParser.Parsers.parse_city/1)
         |> RaspParser.FileOperations.write_results("directions")
+      Enum.map(directions, &RaspParser.Parsers.parse_direction/1)
     end
 
     defprotocol Stringable do
